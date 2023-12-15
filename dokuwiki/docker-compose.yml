@@ -1,0 +1,22 @@
+version: '3'
+services:
+  dokuwiki:
+    container_name: dokuwiki
+    image: php:7-apache-bullseye
+    restart: unless-stopped
+    networks:
+      - dokuwiki
+    ports:
+      - '8888:80'
+    volumes:
+      - 'dokuwiki_config:/var/www/html'
+      - 'php_config:/usr/local/etc/php'
+
+networks:
+  dokuwiki:
+
+volumes:
+  dokuwiki_config:
+    driver: local
+  php_config:
+    driver: local
